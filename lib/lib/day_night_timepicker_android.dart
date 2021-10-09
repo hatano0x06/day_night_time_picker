@@ -182,11 +182,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     String _a = "am";
 
     if (!widget.is24HrFormat) {
-      if (_h == 0) {
-        _h = 12;
-      } else if (_h == 12) {
-        _a = "pm";
-      } else if (_h > 12) {
+      if (_h >= 12) {
         _a = "pm";
         _h -= 12;
       }
@@ -256,9 +252,6 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     int minDiff = (max - min).round();
     int divisions = getMinuteDivisions(minDiff, widget.minuteInterval);
 
-    double hourMinValue = widget.is24HrFormat ? 0 : 1;
-    double hourMaxValue = widget.is24HrFormat ? 23 : 12;
-
     if (hourIsSelected) {
       min = widget.minHour!;
       max = widget.maxHour!;
@@ -294,7 +287,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                   ? DayNightBanner(
                       hour: getHours(hour, a, widget.is24HrFormat),
                       displace:
-                          mapRange(hour! * 1.0, hourMinValue, hourMaxValue),
+                          mapRange(hour! * 1.0, 0, 23),
                       sunAsset: widget.sunAsset,
                       moonAsset: widget.moonAsset,
                     )

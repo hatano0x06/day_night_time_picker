@@ -104,10 +104,10 @@ PageRouteBuilder showPicker({
   TextStyle okCancelStyle = const TextStyle(fontWeight: FontWeight.bold),
 }) {
   if (minHour == double.infinity) {
-    minHour = is24HrFormat ? 0 : 1;
+    minHour = is24HrFormat ? 0 : 0;
   }
   if (maxHour == double.infinity) {
-    maxHour = is24HrFormat ? 23 : 12;
+    maxHour = is24HrFormat ? 23 : 11;
   }
 
   assert(!(disableHour == true && disableMinute == true),
@@ -120,7 +120,7 @@ PageRouteBuilder showPicker({
     assert(maxHour <= 23 && minHour >= 0,
         "\"minHour\" and \"maxHour\" should be between 0-23 for 24-hour format");
   } else {
-    assert(maxHour <= 12 && minHour >= 1,
+    assert(maxHour <= 11 && minHour >= 0,
         "\"minHour\" and \"maxHour\" should be between 1-12 for 12-hour format");
   }
 
